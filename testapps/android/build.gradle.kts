@@ -41,6 +41,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 val remoteBuild = false
@@ -49,10 +53,12 @@ if (remoteBuild) {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/[your org]/[your repo]")
+            url = uri("https://maven.pkg.github.com/kravchenko/kmmbridgetest")
             credentials {
-                username = project.property("GITHUB_PACKAGES_USERNAME") as String
-                password = project.property("GITHUB_PACKAGES_PASSWORD") as String
+                //username = project.property("GITHUB_PACKAGES_USERNAME") as String
+                username = project.property("GITHUB_ID") as String
+                //password = project.property("GITHUB_PACKAGES_PASSWORD") as String
+                password = project.property("GITHUB_PACKAGES_TOKEN") as String
             }
         }
     }
