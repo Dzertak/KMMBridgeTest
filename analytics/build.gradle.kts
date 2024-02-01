@@ -37,4 +37,18 @@ android {
     namespace = "co.touchlab.kmmbridgekickstart.analytics"
 }
 
-addGithubPackagesRepository()
+//addGithubPackagesRepository()
+
+publishing {
+    //val properties = readProperties(project.rootProject.file("local.properties"))
+    repositories {
+        maven {
+            name = "KMMBridgeTest"
+            url = uri("https://maven.pkg.github.com/dzertak/KMMBridgeTest")
+            credentials {
+                username = System.getenv("USERNAME") //?: properties.getProperty("GITHUB_ID")
+                password = System.getenv("PASSWORD") //?:properties.getProperty("GITHUB_PACKAGES_TOKEN")
+            }
+        }
+    }
+}
